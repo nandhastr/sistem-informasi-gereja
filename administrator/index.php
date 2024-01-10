@@ -578,6 +578,28 @@ while ($data = $sql->fetch_assoc())
 								include "admin/pindah/data_pindah.php";
 								break;
 
+                                //kematian
+                            case 'data-kematian':
+                                include "admin/kematian/data_kematian.php";
+                                break;
+
+                            case 'add-kematian':
+                                include "admin/kematian/add_kematian.php";
+                                break;
+
+                            case 'edit-kematian':
+                                include "admin/kematian/edit_kematian.php";
+                                break;
+
+                            case 'del-kematian':
+                                include "admin/kematian/del_kematian.php";
+                                break;
+
+                                //periode kepengurusan
+                            case 'periode-kepengurusan':
+                                include "admin/periode_kepengurusan/data_periode_kepengurusan.php";
+                                break;
+
 
 								//default
 							default:
