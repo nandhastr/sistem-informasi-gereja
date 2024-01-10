@@ -202,6 +202,18 @@ while ($data = $sql->fetch_assoc())
                                         <p>Pindah</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="?page=periode-kepengurusan" class="nav-link">
+                                        <i class="nav-icon far fa-circle text-warning"></i>
+                                        <p>Periode Kepengurusan</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="?page=data-kematian" class="nav-link">
+                                        <i class="nav-icon far fa-circle text-warning"></i>
+                                        <p>Data Kematian</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
 
