@@ -46,6 +46,8 @@ while ($data = $sql->fetch_assoc()) {
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <!-- Alert -->
+    <script src="plugins/jquery/jquery.min.js"></script>
+
     <script src="plugins/alert.js"></script>
 </head>
 
@@ -613,7 +615,6 @@ while ($data = $sql->fetch_assoc()) {
                             case 'del-kematian':
                                 include "admin/kematian/del_kematian.php";
                                 break;
-
                                 //periode kepengurusan
                             case 'periode-kepengurusan':
                                 include "admin/periode_kepengurusan/data_periode_kepengurusan.php";
@@ -662,7 +663,6 @@ while ($data = $sql->fetch_assoc()) {
     <!-- ./wrapper -->
 
     <!-- jQuery -->
-    <script src="plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
     <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- Select2 -->
@@ -812,6 +812,35 @@ while ($data = $sql->fetch_assoc()) {
                 xhr.send();
             }
         }
+    }
+
+    function searchUmatByNIK() {
+        let nik = document.getElementById("nik").value;
+        $.ajax({
+            url: "admin/kematian/getUmatByNIK.php",
+            type: "POST",
+            data: {
+                nik: nik
+            },
+            dataType: "JSON",
+            success: function(response) {
+                console.log(response);
+
+
+                if(response.status == "error"){
+                    alert("Data tidak ditemukan");
+                } else {
+                    document.getElementById("nama_umat").value = response.nama_umat;
+                document.getElementById("lingkungan").value = response.nama_lingkungan;
+                }
+            },
+            error: function(xhr) {
+                console.log(xhr.responseText);
+            }
+        });
+        return false;
+
+    }
     </script>
 
 </body>
