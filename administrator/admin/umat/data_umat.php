@@ -10,7 +10,7 @@
 			<div>
 				<a href="?page=add-umat" class="btn btn-primary">
 					<i class="fa fa-edit"></i> Tambah Data</a>
-			<!-- 	<a href="admin/umat/cet_umat.php" class="btn btn-primary" name="btnCetak" target="_blank">
+				<!-- 	<a href="admin/umat/cet_umat.php" class="btn btn-primary" name="btnCetak" target="_blank">
 					<i class="fa fa-print"></i> Cetak Data</a> -->
 			</div>
 			<br>
@@ -36,8 +36,7 @@
 					$sql = $koneksi->query("SELECT p.id_umat,p.id_kub, p.tanggal_lahir, p.nik, p.nama_umat, p.jenis_kelamin, p.alamat, p.rt, p.rw, a.id_kk, k.no_kk, k.kepala_keluarga, b.id_kub, b.nama_kub, c.id_lingkungan, c.nama_lingkungan, d.id_stasi, d.nama_stasi from 
 			  tb_umat p left join tb_anggota a on p.id_umat=a.id_umat 
 			  left join tb_kk k on a.id_kk=k.id_kk left join tb_lingkungan c on p.id_lingkungan=c.id_lingkungan left join tb_stasi d on c.id_stasi=d.id_stasi inner join tb_kub b on p.id_kub=b.id_kub where status_umat='Ada'");
-					while ($data = $sql->fetch_assoc())
-					{
+					while ($data = $sql->fetch_assoc()) {
 					?>
 
 						<tr>
@@ -62,7 +61,7 @@
 								$today = date("Y-m-d");
 								$diff = date_diff(date_create($dateOfBirth), date_create($today));
 
-								echo($diff->format("%y tahun"));
+								echo ($diff->format("%y tahun"));
 								?>
 							</td>
 							<td>
