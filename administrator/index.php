@@ -202,6 +202,18 @@ while ($data = $sql->fetch_assoc())
                                         <p>Pindah</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="?page=periode-kepengurusan" class="nav-link">
+                                        <i class="nav-icon far fa-circle text-warning"></i>
+                                        <p>Periode Kepengurusan</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="?page=data-kematian" class="nav-link">
+                                        <i class="nav-icon far fa-circle text-warning"></i>
+                                        <p>Data Kematian</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
 
@@ -565,6 +577,28 @@ while ($data = $sql->fetch_assoc())
 							case 'data-pindah':
 								include "admin/pindah/data_pindah.php";
 								break;
+
+                                //kematian
+                            case 'data-kematian':
+                                include "admin/kematian/data_kematian.php";
+                                break;
+
+                            case 'add-kematian':
+                                include "admin/kematian/add_kematian.php";
+                                break;
+
+                            case 'edit-kematian':
+                                include "admin/kematian/edit_kematian.php";
+                                break;
+
+                            case 'del-kematian':
+                                include "admin/kematian/del_kematian.php";
+                                break;
+
+                                //periode kepengurusan
+                            case 'periode-kepengurusan':
+                                include "admin/periode_kepengurusan/data_periode_kepengurusan.php";
+                                break;
 
 
 								//default
