@@ -14,7 +14,7 @@ if (isset($_SESSION["ses_username"]) == "") {
 //KONEKSI DB
 include "inc/koneksi.php";
 //query untuk tabel pesan ata mengambil jumlah pesan pada tabel pesan
-$sql = $koneksi->query("SELECT COUNT(id_pesan) as pesan  from tb_pesan");
+$sql = $koneksi->query("SELECT COUNT(pesan) as pesan  from tb_pesan");
 while ($data = $sql->fetch_assoc()) {
     $pesan = $data['pesan'];
 }
@@ -812,7 +812,7 @@ while ($data = $sql->fetch_assoc()) {
                 xhr.send();
             }
         }
-    }
+    
 
     function searchUmatByNIK() {
         let nik = document.getElementById("nik").value;
