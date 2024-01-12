@@ -7,7 +7,9 @@
 </div>
 
 <div class="row">
+
     <div class="col border mr-2">
+
         <form action="./report/cetak_mutasi_In_out.php" method="post">
             <center><label class="text-center">Mutasi Masuk dan Keluar</label></center>
 
@@ -19,34 +21,25 @@
                     </div>
                 </div>
             </div>
-
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="card-body">
-                        <div class="form-group row">
-                            <div class="col">
-                                <small> Jam masuk</small>
-                                <input type="time" class="form-control" name="jam_masuk" placeholder="Pilih jam Masuk" required>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="card-body">
-                        <div class="form-group row">
-                            <div class="col">
-                                <small> Jam keluar</small>
-                                <input type="time" class="form-control" name="jam_keluar" placeholder="Pilih jam keluar" required>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <div class="card-footer">
-                <input type="submit" name="Cetak" value="Cetak" class="btn btn-info"></input>
+                <input target="_blank" type="submit" name="Cetak" value="Cetak" class="btn btn-info"></input>
+                <a class="btn btn-warning" href="?page=data-absensi">Batal</a>
             </div>
-        </form>
     </div>
+    </form>
+</div>
+<span class="mt-2 bold"><i><b><small>*Data yang tersedia pada tanggal :</small></b></i></span>
+<?php
+$sql = $koneksi->query("SELECT * from tb_absensi_umat");
+while ($data = $sql->fetch_assoc()) {
+?>
+    <tr>
+        <td>
+            <ul>
+                <li><small><?= $data['tanggal']; ?></small></li>
+            </ul>
+        </td>
+    </tr>
+
+<?php } ?>
 </div>

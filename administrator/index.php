@@ -163,6 +163,12 @@ while ($data = $sql->fetch_assoc()) {
 									</a>
 								</li> -->
                                     <li class="nav-item">
+                                        <a href="?page=data-absensi" class="nav-link">
+                                            <i class="nav-icon far fa-circle text-warning"></i>
+                                            <p>Absensi Umat</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
                                         <a href="?page=data-umat" class="nav-link">
                                             <i class="nav-icon far fa-circle text-warning"></i>
                                             <p>Data Umat</p>
@@ -585,6 +591,7 @@ while ($data = $sql->fetch_assoc()) {
                             case 'data-pindah':
                                 include "admin/pindah/data_pindah.php";
                                 break;
+
                                 //kategori
                             case 'data-kategori':
                                 include "admin/kategori/data_kategori.php";
@@ -597,6 +604,20 @@ while ($data = $sql->fetch_assoc()) {
                                 break;
                             case 'delete-kategori':
                                 include "admin/kategori/delete_kategori.php";
+                                break;
+
+                                //Absensi
+                            case 'data-absensi':
+                                include "admin/absensi/data_absensi.php";
+                                break;
+                            case 'add-absensi':
+                                include "admin/absensi/add_absensi.php";
+                                break;
+                            case 'edit-absensi':
+                                include "admin/absensi/edit_absensi.php";
+                                break;
+                            case 'delete-absensi':
+                                include "admin/absensi/delete_absensi.php";
                                 break;
 
                                 //kematian
@@ -812,8 +833,8 @@ while ($data = $sql->fetch_assoc()) {
                 xhr.send();
             }
         }
-    
 
+    
     function searchUmatByNIK() {
         let nik = document.getElementById("nik").value;
         $.ajax({
@@ -833,14 +854,10 @@ while ($data = $sql->fetch_assoc()) {
                     document.getElementById("nama_umat").value = response.nama_umat;
                 document.getElementById("lingkungan").value = response.nama_lingkungan;
                 }
-            },
-            error: function(xhr) {
-                console.log(xhr.responseText);
-            }
-        });
-        return false;
+            });
+            return false;
 
-    }
+        }
     </script>
 
 </body>
