@@ -1,3 +1,4 @@
+
 <?php
 if (isset($_GET['kode'])) {
     $sql = "DELETE FROM tb_kategorial WHERE id_kategorial='" . $_GET['kode'] . "'";
@@ -21,3 +22,4 @@ if (isset($_GET['kode'])) {
                 })</script>";
     }
 }
+

@@ -14,7 +14,7 @@ if (isset($_SESSION["ses_username"]) == "") {
 //KONEKSI DB
 include "inc/koneksi.php";
 //query untuk tabel pesan ata mengambil jumlah pesan pada tabel pesan
-$sql = $koneksi->query("SELECT COUNT(id_pesan) as pesan  from tb_pesan");
+$sql = $koneksi->query("SELECT COUNT(pesan) as pesan  from tb_pesan");
 while ($data = $sql->fetch_assoc()) {
     $pesan = $data['pesan'];
 }
@@ -834,29 +834,25 @@ while ($data = $sql->fetch_assoc()) {
             }
         }
 
+    
+    function searchUmatByNIK() {
+        let nik = document.getElementById("nik").value;
+        $.ajax({
+            url: "admin/kematian/getUmatByNIK.php",
+            type: "POST",
+            data: {
+                nik: nik
+            },
+            dataType: "JSON",
+            success: function(response) {
+                console.log(response);
 
-        function searchUmatByNIK() {
-            let nik = document.getElementById("nik").value;
-            $.ajax({
-                url: "admin/kematian/getUmatByNIK.php",
-                type: "POST",
-                data: {
-                    nik: nik
-                },
-                dataType: "JSON",
-                success: function(response) {
-                    console.log(response);
 
-
-                    if (response.status == "error") {
-                        alert("Data tidak ditemukan");
-                    } else {
-                        document.getElementById("nama_umat").value = response.nama_umat;
-                        document.getElementById("lingkungan").value = response.nama_lingkungan;
-                    }
-                },
-                error: function(xhr) {
-                    console.log(xhr.responseText);
+                if(response.status == "error"){
+                    alert("Data tidak ditemukan");
+                } else {
+                    document.getElementById("nama_umat").value = response.nama_umat;
+                document.getElementById("lingkungan").value = response.nama_lingkungan;
                 }
             });
             return false;
