@@ -14,7 +14,7 @@ if (isset($_SESSION["ses_username"]) == "") {
 //KONEKSI DB
 include "inc/koneksi.php";
 //query untuk tabel pesan ata mengambil jumlah pesan pada tabel pesan
-$sql = $koneksi->query("SELECT COUNT(pesan) as pesan  from tb_pesan");
+$sql = $koneksi->query("SELECT COUNT(id_pesan) as pesan  from tb_pesan");
 while ($data = $sql->fetch_assoc()) {
     $pesan = $data['pesan'];
 }
@@ -162,12 +162,12 @@ while ($data = $sql->fetch_assoc()) {
 										<p>Data Penduduk</p>
 									</a>
 								</li> -->
-                                    <li class="nav-item">
+                                    <!-- <li class="nav-item">
                                         <a href="?page=data-absensi" class="nav-link">
                                             <i class="nav-icon far fa-circle text-warning"></i>
-                                            <p>Absensi Umat</p>
+                                            <p>Mutasi Umat</p>
                                         </a>
-                                    </li>
+                                    </li> -->
                                     <li class="nav-item">
                                         <a href="?page=data-umat" class="nav-link">
                                             <i class="nav-icon far fa-circle text-warning"></i>
@@ -199,6 +199,12 @@ while ($data = $sql->fetch_assoc()) {
                                         </a>
                                     </li>
                                     <li class="nav-item">
+                                        <a href="?page=data-mutasi" class="nav-link">
+                                            <i class="nav-icon far fa-circle text-warning"></i>
+                                            <p>Data Mutasi Umat</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
                                         <a href="?page=data-pindah" class="nav-link">
                                             <i class="nav-icon far fa-circle text-warning"></i>
                                             <p>Pindah</p>
@@ -219,7 +225,7 @@ while ($data = $sql->fetch_assoc()) {
                                     <li class="nav-item">
                                         <a href="?page=data-kategori" class="nav-link">
                                             <i class="nav-icon far fa-circle text-warning"></i>
-                                            <p>Data kategori</p>
+                                            <p>Data kategorial</p>
                                         </a>
                                     </li>
                                 </ul>
@@ -620,6 +626,22 @@ while ($data = $sql->fetch_assoc()) {
                                 include "admin/absensi/delete_absensi.php";
                                 break;
 
+
+
+                                //Mutasi
+                            case 'mutasi-keluar':
+                                include "admin/mutasi/mutasi_keluar.php";
+                                break;
+                            case 'data-mutasi':
+                                include "admin/mutasi/data_mutasi.php";
+                                break;
+                            case 'edit-mutasi':
+                                include "admin/mutasi/edit_mutasi.php";
+                                break;
+                            case 'delete-mutasi':
+                                include "admin/mutasi/delete_mutasi.php";
+                                break;
+
                                 //kematian
                             case 'data-kematian':
                                 include "admin/kematian/data_kematian.php";
@@ -834,28 +856,88 @@ while ($data = $sql->fetch_assoc()) {
             }
         }
 
-    
-    function searchUmatByNIK() {
-        let nik = document.getElementById("nik").value;
-        $.ajax({
-            url: "admin/kematian/getUmatByNIK.php",
-            type: "POST",
-            data: {
-                nik: nik
-            },
-            dataType: "JSON",
-            success: function(response) {
-                console.log(response);
+
+        function searchUmatByNIK() {
+            let nik = document.getElementById("nik").value;
+            $.ajax({
+                url: "admin/kematian/getUmatByNIK.php",
+                type: "POST",
+                data: {
+                    nik: nik
+                },
+                dataType: "JSON",
+                success: function(response) {
+                    console.log(response);
 
 
-                if(response.status == "error"){
-                    alert("Data tidak ditemukan");
-                } else {
-                    document.getElementById("nama_umat").value = response.nama_umat;
-                document.getElementById("lingkungan").value = response.nama_lingkungan;
+                    if (response.status == "error") {
+                        alert("Data tidak ditemukan");
+                    } else {
+                        document.getElementById("nama_umat").value = response.nama_umat;
+                        document.getElementById("lingkungan").value = response.nama_lingkungan;
+                    }
+                },
+                error: function(xhr) {
+                    console.log(xhr.responseText);
                 }
             });
             return false;
+
+        }
+
+        // ambil data sesuai nama yg d pilih
+        function searchByName() {
+            let nik = document.getElementById("nik").value;
+            $.ajax({
+                url: "admin/kematian/getUmatByNIK.php",
+                type: "POST",
+                data: {
+                    nik: nik
+                },
+                dataType: "JSON",
+                success: function(response) {
+                    console.log(response);
+
+
+                    if (response.status == "error") {
+                        alert("Data tidak ditemukan");
+                    } else {
+                        document.getElementById("nama").value = response.nama_umat;
+                        document.getElementById("lingkungan").value = response.nama_lingkungan;
+                        document.getElementById("kub").value = response.nama_kub;
+                    }
+                },
+                error: function(xhr) {
+                    console.log(xhr.responseText);
+                }
+            });
+            return false;
+
+        }
+
+
+
+        // mutasi umat 
+
+        function mutasi_umat() {
+            $('#mutasiModal').modal('show');
+
+        }
+
+        function mutasiMasuk() {
+            $('#mutasiModal').modal('hide');
+            if (confirm('Apakah anggota baru?')) {
+                // Redirect ke form add-umat
+                window.location.href = "?page=add-umat";
+            } else {
+                // Redirect ke data umat
+                window.location.href = "?page=data-umat";
+            }
+        }
+
+        function mutasiKeluar() {
+            $('#mutasiModal').modal('hide');
+            window.location.href = "?page=mutasi-keluar";
 
         }
     </script>

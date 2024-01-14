@@ -4,7 +4,7 @@ error_reporting(E_ALL & ~E_NOTICE);
 include "../inc/koneksi.php";
 if (isset($_POST['Cetak'])) {
     $tanggal = $_POST['tanggal'];
-    $query = mysqli_query($koneksi, "SELECT*FROM tb_absensi_umat WHERE tanggal = '$tanggal'");
+    $query = mysqli_query($koneksi, "SELECT*FROM tb_mutasi_keluar WHERE tanggal = '$tanggal'");
     $data = mysqli_fetch_assoc($query);
 
     $tanggal = $data['tanggal'];
@@ -65,26 +65,30 @@ function tglIndonesia($str)
 
     <table border="1">
         <tr>
-            <th>No.</th>
-            <th>Nama </th>
-            <th>Kehadiran </th>
-            <th>Tanggal</th>
-            <th>Jam Masuk</th>
-            <th>Jam Keluar</th>
+            <th>No</th>
+            <th>NIK</th>
+            <th>Nama Umat</th>
+            <th>Asal Lingkungan </th>
+            <th>KUB</th>
+            <th>Alamat</th>
+            <th>alasan</th>
+            <th>Tanggal Mutasi</th>
         </tr>
         <?php
-        $sql_tampil = "SELECT * FROM tb_absensi_umat where tanggal = '$tanggal'";
+        $sql_tampil = "SELECT * FROM tb_mutasi_keluar where tanggal = '$tanggal'";
         $query_tampil = mysqli_query($koneksi, $sql_tampil);
         $no = 1;
         while ($data = mysqli_fetch_array($query_tampil, MYSQLI_BOTH)) {
         ?>
             <tr>
                 <td style="text-align: center;"><?= $no++; ?></td>
-                <td style="text-align: center;"><?= $data['nama']; ?></td>
-                <td style="text-align: center;"><?= $data['status_absensi']; ?></td>
+                <td style="text-align: center;"><?= $data['nik']; ?></td>
+                <td style="text-align: center;"><?= $data['nama_umat']; ?></td>
+                <td style="text-align: center;"><?= $data['asal_lingkungan']; ?></td>
+                <td style="text-align: center;"><?= $data['kub']; ?></td>
+                <td style="text-align: center;"><?= $data['provinsi'] . ',' . $data['kabupaten'] . ',' . $data['kecamatan'] . ',' . $data['kelurahan']; ?></td>
+                <td style="text-align: center;"><?= $data['alasan']; ?></td>
                 <td style="text-align: center;"><?= date('d-m-Y', strtotime($data['tanggal'])); ?></td>
-                <td style="text-align: center;"><?= $data['jam_masuk']; ?></td>
-                <td style="text-align: center;"><?= $data['jam_keluar']; ?></td>
             </tr>
         <?php } ?>
     </table>

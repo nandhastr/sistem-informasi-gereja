@@ -33,8 +33,7 @@
 								// ambil data dari database
 								$queryN = "SELECT * FROM tb_kk JOIN tb_umat  ON tb_umat.nama_umat = tb_kk.kepala_keluarga GROUP BY id_kk";
 								$hasilN = mysqli_query($koneksi, $queryN);
-								while ($row = mysqli_fetch_array($hasilN))
-								{
+								while ($row = mysqli_fetch_array($hasilN)) {
 								?>
 									<option value="<?= $row['id_kk'] ?>">
 										<?= $row['no_kk'] . '-' . $row['nama_umat'] ?>
@@ -96,8 +95,7 @@
 						// ambil data dari database
 						$query = "select * from tb_kub where id_kub";
 						$hasil = mysqli_query($koneksi, $query);
-						while ($row = mysqli_fetch_array($hasil))
-						{
+						while ($row = mysqli_fetch_array($hasil)) {
 						?>
 							<option value="<?php echo $row['id_kub'] ?>">
 								<?php echo $row['nama_kub'] ?>
@@ -118,8 +116,7 @@
 						// ambil data dari database
 						$query = "select * from tb_lingkungan where id_lingkungan";
 						$hasil = mysqli_query($koneksi, $query);
-						while ($row = mysqli_fetch_array($hasil))
-						{
+						while ($row = mysqli_fetch_array($hasil)) {
 						?>
 							<option value="<?php echo $row['id_lingkungan'] ?>">
 								<?php echo $row['nama_lingkungan'] ?>
@@ -312,8 +309,7 @@
 
 <?php
 
-if (isset($_POST['Simpan']))
-{
+if (isset($_POST['Simpan'])) {
 	//mulai proses simpan data
 	$sql_simpan = "INSERT INTO tb_umat (id_kub, id_lingkungan, nik, nama_umat, jenis_kelamin, alamat, rt, rw, pekerjaan, jabatan_gereja, pendidikan, gol_darah, no_hp, tempat_lahir, tanggal_lahir, status_kawin, umur, status_umat) VALUES (
       		'" . $_POST['id_kub'] . "',
@@ -337,8 +333,7 @@ if (isset($_POST['Simpan']))
             'Ada')";
 	$query_simpan = mysqli_query($koneksi, $sql_simpan);
 
-	if (($_POST['no_kk'] != ""))
-	{
+	if (($_POST['no_kk'] != "")) {
 		// Simpan Data Kartu Keluarga
 		$sql_simpan2 = "INSERT INTO tb_kk (no_kk, kepala_keluarga, alamat, rt, rw, kec, kab, prov, id_kelurahan_desa) VALUES (
 		'" . $_POST['no_kk'] . "',
@@ -352,8 +347,7 @@ if (isset($_POST['Simpan']))
 		'" . $_POST['kelurahanDesa'] . "')";
 		$query_simpan2 = mysqli_query($koneksi, $sql_simpan2);
 	}
-	if ($_POST['hubungan'] != "")
-	{
+	if ($_POST['hubungan'] != "") {
 		$sql = "SELECT MAX(id_umat) FROM TB_UMAT";
 		$sql2 = mysqli_query($koneksi, $sql);
 		$sql2 = mysqli_fetch_assoc($sql2);
@@ -370,17 +364,14 @@ if (isset($_POST['Simpan']))
 
 	mysqli_close($koneksi);
 
-	if ($query_simpan2)
-	{
+	if ($query_simpan2) {
 		echo  "<script>
       Swal.fire({title: 'Tambah Data Berhasil',text: '',icon: 'success',confirmButtonText: 'OK'
       }).then((result) => {if (result.value){
           window.location = 'index.php?page=data-umat';
           }
       })</script>";
-	}
-	else
-	{
+	} else {
 		echo "<script>
       Swal.fire({title: 'Tambah Data Gagal Karena Nomor KK Sudah Ada',text: '',icon: 'error',confirmButtonText: 'OK'
       }).then((result) => {if (result.value){

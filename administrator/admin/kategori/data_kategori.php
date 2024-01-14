@@ -1,7 +1,7 @@
 <div class="card card-info">
     <div class="card-header">
         <h3 class="card-title">
-            <i class="fa fa-table"></i> Data kategori
+            <i class="fa fa-table"></i> Data kategorial
         </h3>
     </div>
     <!-- /.card-header -->
@@ -17,7 +17,7 @@
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>Nama Kategori</th>
+                    <th>Nama Kategorial</th>
                     <th>Nama Ketua </th>
                     <th>Wakil Ketua</th>
                     <th>jumlah KK</th>

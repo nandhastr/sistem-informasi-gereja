@@ -8,11 +8,35 @@
 	<div class="card-body">
 		<div class="table-responsive">
 			<div>
-				<a href="?page=add-umat" class="btn btn-primary">
-					<i class="fa fa-edit"></i> Tambah Data</a>
+				<!-- <a href="?page=add-umat" class="btn btn-primary">
+					<i class="fa fa-edit"></i> Tambah Data</a> -->
+
+				<a onclick="mutasi_umat()" class="btn btn-warning">
+					<i class="fa fa-edit"></i> Mutasi Umat
+				</a>
+
 				<!-- 	<a href="admin/umat/cet_umat.php" class="btn btn-primary" name="btnCetak" target="_blank">
 					<i class="fa fa-print"></i> Cetak Data</a> -->
 			</div>
+			<!-- Modal untuk pilihan Mutasi Keluar/Masuk -->
+			<div class="modal fade" id="mutasiModal" tabindex="-1" role="dialog" aria-labelledby="mutasiModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="mutasiModalLabel">Pilih Jenis Mutasi</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<p>Apakah Anda ingin melakukan Mutasi Keluar atau Mutasi Masuk?</p>
+							<button type="button" class="btn btn-primary" onclick="mutasiMasuk()">Mutasi Masuk</button>
+							<button type="button" class="btn btn-danger" onclick="mutasiKeluar()">Mutasi Keluar</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
 			<br>
 			<table id="example1" class="table table-bordered table-striped">
 				<thead>

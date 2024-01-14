@@ -10,8 +10,8 @@
 
     <div class="col border mr-2">
 
-        <form action="./report/cetak_mutasi_In_out.php" method="post">
-            <center><label class="text-center">Mutasi Masuk dan Keluar</label></center>
+        <form action="./report/cetak_mutasi_keluar.php" method="post">
+            <center><label class="text-center">Mutasi Keluar</label></center>
 
             <div class="card-body">
                 <div class="form-group row">
@@ -22,15 +22,15 @@
                 </div>
             </div>
             <div class="card-footer">
-                <input target="_blank" type="submit" name="Cetak" value="Cetak" class="btn btn-info"></input>
-                <a class="btn btn-warning" href="?page=data-absensi">Batal</a>
+                <input target="blank" type="submit" name="Cetak" value="Cetak" class="btn btn-info"></input>
+                <a class="btn btn-warning" href="?page=data-umat">Batal</a>
             </div>
     </div>
     </form>
 </div>
 <span class="mt-2 bold"><i><b><small>*Data yang tersedia pada tanggal :</small></b></i></span>
 <?php
-$sql = $koneksi->query("SELECT * from tb_absensi_umat");
+$sql = $koneksi->query("SELECT * from tb_mutasi_keluar");
 while ($data = $sql->fetch_assoc()) {
 ?>
     <tr>
