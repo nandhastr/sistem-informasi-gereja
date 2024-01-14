@@ -1,23 +1,23 @@
 <div class="card card-primary">
     <div class="card-header">
         <h3 class="card-title">
-            <i class="fa fa-edit"></i>Form Tambah Data Kategori
+            <i class="fa fa-edit"></i>Form Tambah Data Kategorial
         </h3>
     </div>
     <form action="" method="post" enctype="multipart/form-data">
         <div class="card-body">
 
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Nama kategori</label>
+                <label class="col-sm-2 col-form-label">Nama kategorial</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" name="kategori" placeholder="Nama kategori" required>
+                    <input type="text" class="form-control" name="kategori" placeholder="Nama kategorial" required>
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Pilih ketua kategori</label>
+                <label class="col-sm-2 col-form-label">Pilih ketua kategorial</label>
                 <div class="col-sm-6">
                     <select class="form-control" name="ketua" id="" required>
-                        <option disabled selected>-- Pilih Ketua Kategori --</option>
+                        <option disabled selected>-- Pilih Ketua Kategorial --</option>
                         <?php
                         // ambil data dari database
                         $query = "select * from tb_umat where status_umat='Ada'";
@@ -36,10 +36,10 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Pilih wakil ketua kategori</label>
+                <label class="col-sm-2 col-form-label">Pilih wakil ketua kategorial</label>
                 <div class="col-sm-6">
                     <select class="form-control" name="wakil_ketua" id="" required>
-                        <option disabled selected>-- Pilih wakil Ketua Kategori --</option>
+                        <option disabled selected>-- Pilih wakil Ketua Kategorial --</option>
                         <?php
                         // ambil data dari database
                         $query = "select * from tb_umat where status_umat='Ada'";

@@ -16,7 +16,7 @@
             <!-- Add a search button -->
             <div class="form-group row">
                 <div class="col-sm-6 offset-sm-2">
-                    <button type="button" class="btn btn-primary"  onclick="searchUmatByNIK()">Cari</button>
+                    <button type="button" class="btn btn-primary" onclick="searchUmatByNIK()">Cari</button>
                 </div>
             </div>
 
