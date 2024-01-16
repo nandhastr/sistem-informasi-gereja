@@ -48,6 +48,7 @@ while ($data = $sql->fetch_assoc()) {
     <!-- Alert -->
     <script src="plugins/jquery/jquery.min.js"></script>
 
+
     <script src="plugins/alert.js"></script>
 </head>
 
@@ -925,7 +926,7 @@ while ($data = $sql->fetch_assoc()) {
         }
 
         function mutasiMasuk() {
-            $('#mutasiModal').modal('hide');
+
             if (confirm('Apakah anggota baru?')) {
                 // Redirect ke form add-umat
                 window.location.href = "?page=add-umat";
@@ -934,6 +935,8 @@ while ($data = $sql->fetch_assoc()) {
                 window.location.href = "?page=data-umat";
             }
         }
+
+
 
         function mutasiKeluar() {
             $('#mutasiModal').modal('hide');
