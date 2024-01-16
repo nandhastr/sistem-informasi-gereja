@@ -162,9 +162,71 @@
 
 
 <?php
+// if (isset($_POST['Simpan'])) {
+//     $nik = $_POST["nik"];
+//     $namaUmat = $_POST["nama_umat"];
+//     $asalLingkungan = $_POST["asal_lingkungan"];
+//     $kub = $_POST["kub"];
+//     $provinsi = $_POST["provinsi"];
+//     $kabupaten = $_POST["kabupaten"];
+//     $kecamatan = $_POST["kecamatan"];
+//     $kelurahan = $_POST["kelurahan"];
+//     $alasan = $_POST["alasan"];
+//     $tanggalKeluar = $_POST["tanggal"];
+
+//     // Periksa koneksi
+//     $koneksi = mysqli_connect("localhost", "root", "", "sigereja");
+//     if (!$koneksi) {
+//         die("Connection failed: " . mysqli_connect_error());
+//     }
+
+//     // Lakukan query untuk menyisipkan data ke dalam tabel
+//     $query = "INSERT INTO tb_mutasi_keluar (nik, nama_umat, asal_lingkungan, kub, provinsi, kabupaten, kecamatan,kelurahan, alasan, tanggal)
+//               VALUES ('$nik', '$namaUmat', '$asalLingkungan', '$kub', '$provinsi', '$kabupaten', '$kecamatan','$kelurahan', '$alasan', '$tanggalKeluar')";
 
 
+//     // Eksekusi query
+//     $save = mysqli_query($koneksi, $query);
 
+//     // Periksa apakah query berhasil dijalankan
+//     if ($save) {
+//         echo "<script>
+//                 Swal.fire({
+//                     title: 'Tambah Data Berhasil',
+//                     text: '',
+//                     icon: 'success',
+//                     confirmButtonText: 'OK'
+//                 }).then((result) => {
+//                     if (result.value){
+//                         window.location = 'index.php?page=data-mutasi';
+//                     }
+//                 })
+//             </script>";
+//         // Lakukan operasi hapus dari tb_umat berdasarkan nik
+//         $hapusQuery = "DELETE FROM tb_umat WHERE nik = '$nik'";
+//         $hapusResult = mysqli_query($koneksi, $hapusQuery);
+
+//         if ($hapusResult) {
+//             $response['hapus_success'] = true;
+//         } else {
+//             $response['hapus_success'] = false;
+//         }
+//     } else {
+//         // echo "Error: " . $query . "<br>" . mysqli_error($koneksi);
+//         echo "<script>
+//                 Swal.fire({
+//                     title: 'Tambah Data Gagal',
+//                     text: '',
+//                     icon: 'error',
+//                     confirmButtonText: 'OK'
+//                 }).then((result) => {
+//                     if (result.value){
+//                         window.location = 'index.php?page=mutasi-keluar';
+//                     }
+//                 })
+//             </script>";
+//     }
+// }
 
 if (isset($_POST['Simpan'])) {
     $nik = $_POST["nik"];
@@ -188,13 +250,21 @@ if (isset($_POST['Simpan'])) {
     $query = "INSERT INTO tb_mutasi_keluar (nik, nama_umat, asal_lingkungan, kub, provinsi, kabupaten, kecamatan,kelurahan, alasan, tanggal)
               VALUES ('$nik', '$namaUmat', '$asalLingkungan', '$kub', '$provinsi', '$kabupaten', '$kecamatan','$kelurahan', '$alasan', '$tanggalKeluar')";
 
-
     // Eksekusi query
-    $save = mysqli_query($koneksi, $query);
+    $save = mysqli_query(
+        $koneksi,
+        $query
+    );
 
     // Periksa apakah query berhasil dijalankan
     if ($save) {
-        echo "<script>
+        // Lakukan operasi hapus dari tb_umat berdasarkan nik
+        $hapusQuery = "DELETE FROM tb_umat WHERE nik = '$nik'";
+        $hapusResult = mysqli_query($koneksi, $hapusQuery);
+
+        if ($hapusResult) {
+            $response['hapus_success'] = true;
+            echo "<script>
                 Swal.fire({
                     title: 'Tambah Data Berhasil',
                     text: '',
@@ -206,11 +276,11 @@ if (isset($_POST['Simpan'])) {
                     }
                 })
             </script>";
-    } else {
-        // echo "Error: " . $query . "<br>" . mysqli_error($koneksi);
-        echo "<script>
+        } else {
+            $response['hapus_success'] = false;
+            echo "<script>
                 Swal.fire({
-                    title: 'Tambah Data Gagal',
+                    title: 'Hapus Data Gagal',
                     text: '',
                     icon: 'error',
                     confirmButtonText: 'OK'
@@ -220,29 +290,26 @@ if (isset($_POST['Simpan'])) {
                     }
                 })
             </script>";
+        }
+    } else {
+        // echo "Error: " . $query . "<br>" . mysqli_error($koneksi);
+        echo "<script>
+            Swal.fire({
+                title: 'Tambah Data Gagal',
+                text: '',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            }).then((result) => {
+                if (result.value){
+                    window.location = 'index.php?page=mutasi-keluar';
+                }
+            })
+        </script>";
     }
 }
 
+
+
+
+
 ?>
-
-<script>
-    function updateJam() {
-        var now = new Date();
-
-        // Tampilkan jam
-        var jam = now.getHours();
-        var menit = now.getMinutes();
-        var detik = now.getSeconds();
-        jam = jam < 10 ? '0' + jam : jam;
-        menit = menit < 10 ? '0' + menit : menit;
-        detik = detik < 10 ? '0' + detik : detik;
-        var waktu = jam + ':' + menit + ':' + detik;
-        document.getElementById('jam').innerText = waktu;
-
-
-        setTimeout(updateJam, 1000); // Perbarui setiap 1 detik
-    }
-
-    // Panggil fungsi untuk pertama kali
-    updateJam();
-</script>
